@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-
-#include <sstream>
 #include "funzioni.h"
 using namespace std;
 
