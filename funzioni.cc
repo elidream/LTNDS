@@ -51,7 +51,7 @@ double stdev(double *m, int ntot){
     for(int i = 0; i < ntot; i++){
         scarti += pow((m[i] - media),2);
     }
-    return sqrt(scarti/ntot);
+    return sqrt(scarti/(ntot-1));
 }
 
 double varianza(double *m, int ntot){
@@ -65,7 +65,7 @@ double varianza(double *m, int ntot){
     for(int i = 0; i < ntot; i++){
         scarti += pow((m[i] - media),2);
     }
-    return (scarti/ntot);
+    return (scarti/(ntot-1));
 }
 
 void sort_by_value(double *m, int ntot){                        //metti in ordine crescente
