@@ -92,11 +92,17 @@ double mediana (double *m, int ntot){
 
     return mediana;
 }
-
-void savedata(double *m, int ntot){                          //salva dati ordinati in un file di uscita
-    fstream outfile("datibelli.dat", ios::out);
+void print(const char* filename, double *m, int ntot){                //salva dati ordinati in un file di uscita
+    fstream outfile(filename, ios::out);
+    
     for( int i=0; i < ntot; i++){
         outfile << m[i] << endl;
     }
     outfile.close();
+}
+
+void print(double *m, int ntot){
+    for(int i = 0; i < ntot; i++){
+        cout << m[i] << endl;
+    }
 }
