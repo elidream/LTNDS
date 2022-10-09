@@ -5,7 +5,7 @@
 using namespace std;
 
 
-double *load(const string& filename, int& count){                    //metto dati in un array
+/*double *load(const string& filename, int& count){                        //se non sai la dimensione del file, RICORDA DI INIZIALIZZARE ntot =1 e count = 0 
     fstream f;
     f.open(filename, ios::in);
     if (!f.good()){
@@ -26,6 +26,17 @@ double *load(const string& filename, int& count){                    //metto dat
         f >> out[i] ;
     }
 
+    return out;
+}*/
+
+double *load( const string& filename, int ntot){          //se sai già la dimensione del file 
+    fstream f;
+    f.open(filename, ios::in);
+    double *out = new double[ntot];
+    for (int i = 0; i < ntot; i++){
+        f >> out[i] ;
+    }
+    
     return out;
 }
 
@@ -66,7 +77,7 @@ double varianza(double *m, int ntot){
     return (scarti/(ntot-1));
 }
 
-void sort_by_value(double *m, int ntot){                        //metti in ordine crescente
+void sort_by_value(double *m, int ntot){
     for (int i = 0; i < ntot - 1; i++){
         for (int j = i + 1; j < ntot; j++){
             if (m[i] > m[j]){
@@ -90,7 +101,8 @@ double mediana (double *m, int ntot){
 
     return mediana;
 }
-void print(const char* filename, double *m, int ntot){                //salva dati ordinati in un file di uscita
+
+void print(const char* filename, double *m, int ntot){                  //overloading di funzioni
     fstream outfile(filename, ios::out);
     
     for( int i=0; i < ntot; i++){
