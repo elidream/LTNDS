@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <cstdlib>
+#include "funzioni.h"
+using namespace std;
+
+
+int main(int argc, char** argv){
+
+    if (argc < 4){
+        cout << "No bro, nel terminal devi inserire: " << argv[0] << "  "<< "<n_data>  <filein>  <fileout>"<< endl;               
+        return -1;
+    }
+
+    //devo passare il numero dei dati e i nome del file tramite terminale con 
+    int count = atoi(argv[1]);           
+    char *filein = argv[2]; 
+    char *fileout = argv[3];           
+                                             
+    double *w = load (filein, count);
+    /* for (int i= 0; i < 20 ; i ++){
+        cout << w[i] << endl;               //prova per vedere se prende i dati giusti 
+    }*/
+    
+    //cout <<"numero dati = " << count << endl;
+    cout << "MEDIA = " << media(w, count) << endl;
+    cout << "ST.DEV. = " << stdev(w, count) << endl;
+    cout << "VARIANZA = " << varianza(w, count) << endl;
+    cout << "Mo aspetti 34 secondi che Olaf riordina 100000 dati per dirti la mediana..." << endl;
+    cout << "........................." << endl;
+
+    sort_by_value(w, count);
+    cout << "MEDIANA= " << mediana(w,count) << endl;
+
+    /*for (int i= 0; i < 5 ; i ++){
+        cout << w[i] << endl;               //prova per vedere se ordina bene
+    } */
+    
+    print(fileout, w, count);           //stampa sul file di uscita 
+    //print(w, count);                //stampa sul terminale (fallo solo quando devi perchè ti stampa 100000 numeri a terminale)
+    
+    delete []w;
+
+    return 0;
+}
